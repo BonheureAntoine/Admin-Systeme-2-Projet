@@ -5,6 +5,9 @@ services:
     container_name: private_resolver
     networks:
       - trusted
+    ports:
+      - "10.10.0.209:53:53/tcp"
+      - "10.10.0.209:53:53/udp"
   private_soa:
     build: private/SOA/.
     container_name: private_soa
@@ -20,6 +23,7 @@ networks:
     ipam:
       config:
         - subnet: 10.10.0.208/28
+          gateway: 10.10.0.209
   enterprise:
     driver: bridge
     ipam:
