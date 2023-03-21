@@ -1,0 +1,30 @@
+version: "3.1"
+services:
+  web:
+    container_name: intranetwoodytoys
+    image: webintranet
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    links:
+      - database
+  database:
+    container_name: database
+    image: mysqlintranet
+    command: --default-authentication-plugin=mysql_native_password
+    build:
+      context: ./db
+      dockerfile: Dockerfile
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: woodytoys
+      MYSQL_USER: admin
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_PASSWORD: admin
+    restart: always
+    volumes:
+      - ./db/databasesWoodytoys:/docker-entrypoint-initdb.d
+      
