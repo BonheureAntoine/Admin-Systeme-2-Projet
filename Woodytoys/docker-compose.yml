@@ -24,8 +24,6 @@ services:
     build: private/db/.
     container_name: database
     command: --default-authentication-plugin=mysql_native_password
-    ports:
-      - "10.10.0.225:3306:3306"
     networks:
       dbnet:
         ipv4_address: 10.10.0.226
