@@ -13,6 +13,30 @@ services:
     container_name: private_soa
     networks:
       - trusted
+  private_web:
+    build: private/web/.
+    container_name: intranetwoodytoys
+    networks:
+      - trusted
+    ports:
+      - "10.10.0.209:80:80"
+  database:
+    build: private/db/.
+    container_name: database
+    command: --default-authentication-plugin=mysql_native_password
+    ports:
+      - "10.10.0.224:3306:3306"
+    networks:
+      dbnet:
+        ipv4_address: 10.10.0.225
+    environment:
+      MYSQL_DATABASE: woodytoys
+      MYSQL_USER: admin
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_PASSWORD: admin
+    restart: always
+    volumes:
+      - private/db/databasesWoodytoys:/docker-entrypoint-initdb.d
   mail:
     build: public/mail/.
     container_name: mail-server
@@ -45,3 +69,9 @@ networks:
       config:
         - subnet: 10.10.0.192/28
           gateway: 10.10.0.193
+  dbnet:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.10.0.223/29
+          gateway: 10.10.0.224
