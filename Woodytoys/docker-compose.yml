@@ -28,7 +28,7 @@ services:
       - "10.10.0.224:3306:3306"
     networks:
       dbnet:
-        ipv4_address: 10.10.0.225
+        ipv4_address: 10.10.0.226
     environment:
       MYSQL_DATABASE: woodytoys
       MYSQL_USER: admin
@@ -73,5 +73,5 @@ networks:
     driver: bridge
     ipam:
       config:
-        - subnet: 10.10.0.223/29
-          gateway: 10.10.0.224
+        - subnet: 10.10.0.224/29
+          gateway: 10.10.0.225
