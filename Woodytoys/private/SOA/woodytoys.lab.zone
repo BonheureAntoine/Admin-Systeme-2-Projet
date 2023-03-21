@@ -1,0 +1,14 @@
+$TTL 1h
+woodytoys.lab. IN SOA ns.woodytoys.lab. euan.woodytoys.lab. (
+	2007120710 ; serial number of this zone file
+	1d ; slave refresh (1 day)
+	2h ; slave retry time in case of a problem (2 hours)
+	4w ; slave expiration time (4 weeks)
+	1h ; maximum caching time in case of failed lookups (1 hour)
+)
+
+woodytoys.lab. NS ns;
+
+ns A 10.10.0.2;
+
+test.woodytoys.lab. A 10.10.0.69;
