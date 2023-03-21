@@ -36,7 +36,7 @@ services:
       MYSQL_PASSWORD: admin
     restart: always
     volumes:
-      - private/db/databasesWoodytoys:/docker-entrypoint-initdb.d
+      - ./private/db/databasesWoodytoys:/docker-entrypoint-initdb.d
   mail:
     build: public/mail/.
     container_name: mail-server
