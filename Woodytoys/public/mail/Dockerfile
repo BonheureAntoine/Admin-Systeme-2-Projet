@@ -10,8 +10,7 @@ COPY main.cf /etc/postfix/
 
 COPY dovecot.conf /etc/dovecot/
 
-RUN adduser aled
-RUN adduser fougere
+RUN adduser contact
 
 RUN apt-get install -y nmap net-tools telnet
 

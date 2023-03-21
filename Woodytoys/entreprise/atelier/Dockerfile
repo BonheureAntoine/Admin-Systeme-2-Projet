@@ -8,3 +8,4 @@ EXPOSE 110/tcp
 
 EXPOSE 143/tcp
 
+CMD ["adduser", "atelier"]
