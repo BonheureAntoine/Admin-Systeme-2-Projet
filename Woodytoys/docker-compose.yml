@@ -6,7 +6,7 @@ services:
     networks:
       - trusted
     ports:
-      #- "10.10.0.209:53:53/tcp"
+      - "10.10.0.209:53:53/tcp"
       - "10.10.0.209:53:53/udp"
   private_soa:
     build: private/SOA/.
