@@ -12,3 +12,5 @@ m2-2.ephec-ti.be. NS ns;
 ns A 137.117.155.227;
 
 test.m2-2.ephec-ti.be. A 69.69.69.69;
+www.m2-2.ephec-ti.be. A 4.175.208.191;
+b2b.m2-2.ephec-ti.be. A 4.175.208.191;
