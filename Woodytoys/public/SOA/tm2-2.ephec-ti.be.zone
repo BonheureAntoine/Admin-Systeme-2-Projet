@@ -1,0 +1,14 @@
+$TTL 1h
+tm2-2.ephec-ti.be. IN SOA ns.tm2-2.ephec-ti.be. euan.tm2-2.ephec-ti.be. (
+	2007120710 ; serial number of this zone file
+	1d ; slave refresh (1 day)
+	2h ; slave retry time in case of a problem (2 hours)
+	4w ; slave expiration time (4 weeks)
+	1h ; maximum caching time in case of failed lookups (1 hour)
+)
+
+tm2-2.ephec-ti.be. NS ns;
+
+ns A 137.117.155.227;
+
+test.tm2-2.ephec-ti.be. A 69.69.69.69;
