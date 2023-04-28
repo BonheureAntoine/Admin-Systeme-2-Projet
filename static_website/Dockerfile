@@ -22,6 +22,9 @@ COPY ./config/sites/b2b.conf /etc/apache2/sites-available/
 COPY ./config/sites/vitrine.conf /etc/apache2/sites-available/
 COPY ./config/woodytoys.conf /etc/apache2/sites-available/
 
+#Configuration resolution de nom interne
+COPY ./resolv.conf /etc/
+
 #Faire le lien entre sites-available et sites-enabled
 RUN a2dissite 000-default.conf
 
