@@ -20,7 +20,7 @@ COPY ./config/ports.conf /etc/apache2/
 COPY ./config/apache2.conf /etc/apache2/
 COPY ./config/sites/b2b.conf /etc/apache2/sites-available/
 COPY ./config/sites/vitrine.conf /etc/apache2/sites-available/
-COPY ./config/woodytoys.conf /etc/apache2/sites-available/
+#COPY ./config/woodytoys.conf /etc/apache2/sites-available/
 
 #Configuration resolution de nom interne
 COPY ./resolv.conf /etc/
