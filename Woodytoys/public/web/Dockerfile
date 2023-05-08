@@ -1,5 +1,10 @@
+# Image de base du server web 
+# https://hub.docker.com/_/php
+# Dans le section apache il y a plus d'explication sur cette image
+# php:<version>-apache
 FROM php:8.0-apache
 
+# associer des commandes mysqli et sql dans l'image apache
 RUN docker-php-ext-install mysqli pdo pdo_mysql && docker-php-ext-enable mysqli
 #RUN apt-get update && apt-get upgrade -y
 
@@ -12,24 +17,23 @@ RUN docker-php-ext-install mysqli pdo pdo_mysql && docker-php-ext-enable mysqli
 RUN mkdir /var/log/apache2/html
 RUN mkdir /var/log/apache2/php
 
-COPY ./mysite/ /var/www/
-#COPY ./mysite/php/ /var/www/php/
-
 #Configuration apache et des virtual hosts
+# Ajout des fichiers de configuration et des sites dans les dossiers adéquat 
+COPY ./mysite/ /var/www/
 COPY ./config/ports.conf /etc/apache2/
 COPY ./config/apache2.conf /etc/apache2/
 COPY ./config/sites/b2b.conf /etc/apache2/sites-available/
 COPY ./config/sites/vitrine.conf /etc/apache2/sites-available/
-#COPY ./config/woodytoys.conf /etc/apache2/sites-available/
 
 #Configuration resolution de nom interne
 COPY ./resolv.conf /etc/
 
-#Faire le lien entre sites-available et sites-enabled
+# Désactivation du fichier de configuration du site par défaut
 RUN a2dissite 000-default.conf
-
+# Activation des fichiers de configuration des sites
 RUN a2ensite vitrine.conf   
 RUN a2ensite b2b.conf
+
 #RUN apt-get -y install openssl
 #RUN apt-get update -y && apt-get install -y nano vim
 #RUN apt-get install -y dnsutils net-tools iputils-ping
