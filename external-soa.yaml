@@ -1,0 +1,33 @@
+additional_properties: {}
+apiVersion: 2022-10-01-preview
+extended_location: null
+location: westeurope
+name: external-soa
+properties:
+  containers:
+  - name: external-soa
+    properties:
+      environmentVariables: []
+      image: cradminii2tm2g2.azurecr.io/external/soa
+      ports:
+      - port: 53
+        protocol: TCP
+      resources:
+        requests:
+          cpu: 1.0
+          memoryInGB: 1.5
+  imageRegistryCredentials:
+  - server: cradminii2tm2g2.azurecr.io
+    username: cradminii2tm2g2
+    password: j7J257EYhoL8A17gVxIk/p/s3eBYnHyEK829dwx8IG+ACRALAH57
+  initContainers: []
+  osType: Linux
+  restartPolicy: Always
+  sku: Standard
+  subnetIds:
+  - id: /subscriptions/1a2f4643-9291-403c-a431-af74ac27bd92/resourceGroups/RG_AdminII_2TM2-2/providers/Microsoft.Network/virtualNetworks/Vnet_AdminII_2TM2-2_vnet/subnets/DMZ
+  dnsConfig:
+    nameServers:
+    - 10.0.0.212
+tags: {}
+type: Microsoft.ContainerInstance/containerGroups

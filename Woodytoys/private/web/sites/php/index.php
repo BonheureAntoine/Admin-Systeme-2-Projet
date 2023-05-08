@@ -33,7 +33,7 @@ $mydatabase = 'woodytoys';
 // check the MySQL connection status
 //$conn = new mysqli($host, $user, $pass, $mydatabase);
 
-$conn = new PDO('mysql:host=10.10.0.225;port=3306;dbname=woodytoys;charset=utf8', 'admin', 'admin');
+$conn = new PDO('mysql:host=database.woodytoys.internal;port=3306;dbname=woodytoys;charset=utf8', 'admin', 'admin');
 $sql = 'SELECT * FROM Produits';
 $reponse = $conn->query("SELECT * FROM Produits");
 
