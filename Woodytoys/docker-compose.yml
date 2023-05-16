@@ -12,7 +12,40 @@ services:
     build: private/SOA/.
     container_name: private_soa
     networks:
+      trusted:
+        ipv4_address: "10.10.0.211"
+  private_web:
+    build: private/web/.
+    container_name: intranetwoodytoys
+    networks:
       - trusted
+    ports:
+      - "10.10.0.209:80:80"
+  database:
+    build: private/db/.
+    container_name: database
+    command: --default-authentication-plugin=mysql_native_password
+    networks:
+      dbnet:
+        ipv4_address: "10.10.0.226"
+    environment:
+      MYSQL_DATABASE: woodytoys
+      MYSQL_USER: admin
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_PASSWORD: admin
+    restart: always
+    volumes:
+      - ./private/db/databasesWoodytoys:/docker-entrypoint-initdb.d
+  mail:
+    build: public/mail/.
+    container_name: mail-server
+    networks:
+      - dmz
+    ports:
+      - "10.10.0.193:25:25"
+      - "10.10.0.193:110:110"
+      - "10.10.0.193:143:143"
+    command: tail -F anything
   client:
     image: busybox
     networks:
@@ -29,3 +62,15 @@ networks:
     ipam:
       config:
         - subnet: 10.10.0.0/25
+  dmz:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.10.0.192/28
+          gateway: 10.10.0.193
+  dbnet:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.10.0.224/29
+          gateway: 10.10.0.225
