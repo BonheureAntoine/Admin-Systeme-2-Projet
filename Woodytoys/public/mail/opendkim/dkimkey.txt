@@ -1,0 +1,3 @@
+dkimkey._domainkey	IN	TXT	( "v=DKIM1; h=sha256; k=rsa; "
+	  "p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqlfUMsHL7d5pdj/Yeb7wcimcdWxexg+vYczK7sonqj0ovuajFqhfH4zxHSQf8j496eCubE8x4mcY9Vm2GSjRvo9UHpYsv42WIrKI8ojbZ/WzZRRYuLU69PnwZrtVsQk5XWkJXWTXIaAV1rSMSUyediZIO0OwipDSL74TGKEzezBx/Td8FloEc/0djKTz9ZFsfTSsNgskdbtPf9"
+	  "b6/X3T9QS4onhoAh7mrxLxO8/6Wy82kQ3LO83fPFgwCtSQYcWD5P8kLbEO+lF/CoWtDly4G6/I72qdXvIKCop515wgk8RXnClgncnR4qmPfkt/NJhgRo+06FXSRLf4XxJNA1ZMmwIDAQAB" )  ; ----- DKIM key dkimkey for m2-2.ephec-ti.be
