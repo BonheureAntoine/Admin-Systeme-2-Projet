@@ -42,7 +42,7 @@ echo "$user // $pass  // $mydatabase";
 //$conn = new mysqli($host, $user, $pass, $mydatabase);
 
 
-$conn = new PDO("mysql:host=database;port=3306;dbname=$mydatabase;charset=utf8", $user , $pass);
+$conn = new PDO("mysql:host=database.woodytoys.internal;port=3306;dbname=$mydatabase;charset=utf8", $user , $pass);
 $sql = 'SELECT * FROM Produits';
 
 if ($result = $conn->query($sql)){
