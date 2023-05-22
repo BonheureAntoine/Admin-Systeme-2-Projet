@@ -17,23 +17,32 @@
 
 <?php
 //These are the defined authentication environment in the db service
+//database.woodytoys.internal
 
-// The MySQL service named in the docker-compose.yml.
-$host = 'database';
-
-// Database use name
-$user = 'admin';
+$user = getenv('MYSQL_USER2');
 
 //database user password
-$pass = 'admin';
+$pass = getenv('MYSQL_PASSWORD2');
 
 // database name
-$mydatabase = 'woodytoys';
+$mydatabase = getenv('MYSQL_DATABASE');
+
+echo "$user // $pass  // $mydatabase";
+// Database use name
+//get_env('MYSQL_USER');
+//$user = $_ENV['MYSQL_USER'];
+
+//database user password
+//$pass = $_ENV['MYSQL_PASSWORD'];
+
+// database name
+//$mydatabase = $_ENV['MYSQL_DATABASE'];
 
 // check the MySQL connection status
 //$conn = new mysqli($host, $user, $pass, $mydatabase);
 
-$conn = new PDO('mysql:host=database.woodytoys.internal;port=3306;dbname=woodytoys;charset=utf8', 'admin', 'admin');
+
+$conn = new PDO("mysql:host=database;port=3306;dbname=$mydatabase;charset=utf8", $user , $pass);
 $sql = 'SELECT * FROM Produits';
 
 if ($result = $conn->query($sql)){

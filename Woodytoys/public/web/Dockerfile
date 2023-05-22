@@ -4,10 +4,10 @@
 # php:<version>-apache
 FROM php:8.0-apache
 
+
 # associer des commandes mysqli et sql dans l'image apache
 RUN docker-php-ext-install mysqli pdo pdo_mysql && docker-php-ext-enable mysqli
 #RUN apt-get update && apt-get upgrade -y
-
 
 #RUN apt-get -y update
 #RUN apt-get install -y vim
@@ -17,10 +17,10 @@ RUN docker-php-ext-install mysqli pdo pdo_mysql && docker-php-ext-enable mysqli
 RUN mkdir /var/log/apache2/html
 RUN mkdir /var/log/apache2/php
 
-#
-RUN a2enmod ssl && a2enmod rewrite
-RUN mkdir -p /etc/apache2/ssl
-#RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
+COPY ./ssl/ca_bundle.crt /etc/apache2/ssl/ca_bundle.crt
+COPY ./ssl/certificate.crt /etc/apache2/ssl/certificate.crt
+COPY ./ssl/private.key /etc/apache2/ssl/private.key
+
 
 #Configuration apache et des virtual hosts
 # Ajout des fichiers de configuration et des sites dans les dossiers adéquat 
@@ -31,10 +31,11 @@ COPY ./config/sites/b2b.conf /etc/apache2/sites-available/
 COPY ./config/sites/vitrine.conf /etc/apache2/sites-available/
 
 #
-COPY ./ssl/*.pem /etc/apache2/ssl/
+#COPY ./ssll/*.pem /etc/apache2/ssl/
 
 #Configuration resolution de nom interne
 COPY ./resolv.conf /etc/
+
 
 # Désactivation du fichier de configuration du site par défaut
 RUN a2dissite 000-default.conf
@@ -42,11 +43,8 @@ RUN a2dissite 000-default.conf
 RUN a2ensite vitrine.conf   
 RUN a2ensite b2b.conf
 
-#RUN apt-get -y install openssl
-#RUN apt-get update -y && apt-get install -y nano vim
-#RUN apt-get install -y dnsutils net-tools iputils-ping
-#RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /usr/local/apache2/conf/server.key -out /usr/local/apache2/conf/server.crt -subj "/C=BE/ST=Braban-wallon/L=Louvain-La-Neuve/O=Ephec/OU=IT/CN=www.m1-4.ephec-ti.be"
-
+RUN a2enmod ssl
+RUN a2enmod rewrite
 
 EXPOSE 80
 EXPOSE 443
