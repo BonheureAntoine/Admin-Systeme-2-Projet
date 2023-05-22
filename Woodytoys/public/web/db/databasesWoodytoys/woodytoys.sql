@@ -21,3 +21,8 @@ CREATE TABLE Fournisseurs (
 INSERT INTO Fournisseurs(entrepriseNom, entrepriseLocalite,entrepriseTel,entrepriseMail)
 VALUES  ('Wathelet', 'Charleroi', '071 15 17 29', 'contact@wathelet.be'),
         ('Binou', 'Lille', '071 59 87 28', 'contact@binou.be');
+
+CREATE USER 'lecteur' IDENTIFIED BY 'lecteur';
+GRANT SELECT ON * . * TO 'lecteur';
+FLUSH PRIVILEGES;
+

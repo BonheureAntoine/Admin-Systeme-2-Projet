@@ -1,4 +1,4 @@
-FROM php:8.0-apache
+#FROM php:8.0-apache
 
 RUN docker-php-ext-install mysqli pdo pdo_mysql && docker-php-ext-enable mysqli
 #RUN apt-get update && apt-get upgrade -y
@@ -9,27 +9,27 @@ RUN docker-php-ext-install mysqli pdo pdo_mysql && docker-php-ext-enable mysqli
 #RUN apt-get install -y net-tools bind9 bind9utils dnsutils iputils-ping
 
 #Créer des répertoires log pour les deux sites
-RUN mkdir /var/log/apache2/html
-RUN mkdir /var/log/apache2/php
+#RUN mkdir /var/log/apache2/html
+#RUN mkdir /var/log/apache2/php
 
-COPY ./mysite/ /var/www/
+#COPY ./mysite/ /var/www/
 #COPY ./mysite/php/ /var/www/php/
 
 #Configuration apache et des virtual hosts
-COPY ./config/ports.conf /etc/apache2/
-COPY ./config/apache2.conf /etc/apache2/
-COPY ./config/sites/b2b.conf /etc/apache2/sites-available/
-COPY ./config/sites/vitrine.conf /etc/apache2/sites-available/
+#COPY ./config/ports.conf /etc/apache2/
+#COPY ./config/apache2.conf /etc/apache2/
+#COPY ./config/sites/b2b.conf /etc/apache2/sites-available/
+#COPY ./config/sites/vitrine.conf /etc/apache2/sites-available/
 #COPY ./config/woodytoys.conf /etc/apache2/sites-available/
 
 #Configuration resolution de nom interne
-COPY ./resolv.conf /etc/
+#COPY ./resolv.conf /etc/
 
 #Faire le lien entre sites-available et sites-enabled
-RUN a2dissite 000-default.conf
+#RUN a2dissite 000-default.conf
 
-RUN a2ensite vitrine.conf   
-RUN a2ensite b2b.conf
+#RUN a2ensite vitrine.conf
+#RUN a2ensite b2b.conf
 #RUN apt-get -y install openssl
 #RUN apt-get update -y && apt-get install -y nano vim
 #RUN apt-get install -y dnsutils net-tools iputils-ping
@@ -40,3 +40,15 @@ RUN a2ensite b2b.conf
 #EXPOSE 80/udp
 #EXPOSE 8080/tcp
 #EXPOSE 8080/udp
+
+FROM php:8-apache
+
+RUN a2enmod ssl && a2enmod rewrite
+RUN mkdir -p /etc/apache2/ssl
+RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
+
+COPY ./ssl/*.pem /etc/apache2/ssl/
+COPY ./apache/000-default.conf /etc/apache2/sites-available/000-default.conf
+
+EXPOSE 80
+EXPOSE 443

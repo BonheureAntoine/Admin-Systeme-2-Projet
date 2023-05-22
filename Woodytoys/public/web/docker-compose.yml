@@ -7,10 +7,10 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "80:80"
-      #- "8080:8080"
+      - "443:443"
+    env_file:
+      - .local-env
 
-    
     links:
       - database
   database:
@@ -22,11 +22,14 @@ services:
       dockerfile: Dockerfile
     ports:
       - "3306:3306"
-    environment:
-      MYSQL_DATABASE: woodytoys
-      MYSQL_USER: admin
-      MYSQL_ROOT_PASSWORD: admin
-      MYSQL_PASSWORD: admin
+
+    env_file:
+      - .local-env
+#    environment:
+#      MYSQL_DATABASE: MYSQL_DATABASE
+#      MYSQL_USER: MYSQL_USER
+#      MYSQL_ROOT_PASSWORD: MYSQL_ROOT_PASSWORD
+#      MYSQL_PASSWORD: MYSQL_PASSWORD
     restart: always
     volumes:
       - ./db/databasesWoodytoys:/docker-entrypoint-initdb.d
