@@ -19,10 +19,3 @@ b2b.m2-2.ephec-ti.be. A 20.31.160.181;
 mail.m2-2.ephec-ti.be. A 20.31.160.181;
 
 m2-2.ephec-ti.be. MX 10 mail.m2-2.ephec-ti.be.
-=======
-
-# A record
-m2-2.ephec-ti.be.	600	IN	A	10.0.0.196
-# MX record
-m2-2.ephec-ti.be.	600	IN	MX	10 mail.m2-2.ephec-ti.be.
->>>>>>> Stashed changes
