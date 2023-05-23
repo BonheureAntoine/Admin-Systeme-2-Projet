@@ -10,7 +10,7 @@ COPY dovecot.conf /etc/dovecot/
 
 RUN adduser contact
 
-RUN apt-get install -y nmap net-tools telnet mutt
+RUN apt-get install -y nmap net-tools telnet dnsutils systemctl
 
 EXPOSE 25/tcp 
 
@@ -23,6 +23,14 @@ RUN mkdir /etc/opendkim
 COPY opendkim/dkimkey.private /etc/opendkim/
 COPY opendkim/dkimkey.txt /etc/opendkim/
 
+RUN systemctl start opendkim 
+RUN systemctl enable opendkim 
+
+COPY opendkim/opendkim.conf /etc/
+COPY opendkim/TrustedHosts /etc/opendkim/
+COPY opendkim/KeyTable /etc/opendkim/
+COPY opendkim/SigningTable /etc/opendkim/
+
 #RUN chown opendkim:opendkim dkimkey.private
 
 
@@ -30,10 +38,7 @@ COPY opendkim/dkimkey.txt /etc/opendkim/
 #RUN chmod +x /etc/start.sh
 
 RUN postfix start
-RUN service dovecot start
-
-RUN service opendkim start 
-# RUN systemctl opendkim enable 
+#RUN service dovecot start
 
 # CMD ["exec" ,"/etc/start.sh"]
 # CMD exec /etc/start.sh

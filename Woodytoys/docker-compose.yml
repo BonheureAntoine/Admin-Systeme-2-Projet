@@ -45,6 +45,11 @@ services:
     image: busybox
     networks:
       - enterprise
+  public_soa:
+    build: public/SOA/.
+    container_name: public_soa
+    networks:
+       - dmz
 networks:
   trusted:
     driver: bridge
