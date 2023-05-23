@@ -23,7 +23,7 @@ RUN mkdir /etc/opendkim
 COPY opendkim/dkimkey.private /etc/opendkim/
 COPY opendkim/dkimkey.txt /etc/opendkim/
 
-RUN chown opendkim:opendkim dkimkey.private
+#RUN chown opendkim:opendkim dkimkey.private
 
 
 #COPY start.sh /etc/
@@ -32,8 +32,8 @@ RUN chown opendkim:opendkim dkimkey.private
 RUN postfix start
 RUN service dovecot start
 
-RUN systemctl start opendkim
-RUN systemctl enable opendkim
+RUN service opendkim start 
+# RUN systemctl opendkim enable 
 
 # CMD ["exec" ,"/etc/start.sh"]
 # CMD exec /etc/start.sh
