@@ -32,7 +32,7 @@ COPY opendkim/dkimkey.txt /etc/opendkim/
 RUN postfix start
 #RUN service dovecot start
 
-RUN service opendkim start 
+# RUN service opendkim start 
 # RUN systemctl opendkim enable 
 
 # CMD ["exec" ,"/etc/start.sh"]
