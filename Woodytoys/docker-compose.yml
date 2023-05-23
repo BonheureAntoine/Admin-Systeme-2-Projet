@@ -41,11 +41,6 @@ services:
     container_name: mail-server
     networks:
       - dmz
-    ports:
-      - "10.10.0.193:25:25"
-      - "10.10.0.193:110:110"
-      - "10.10.0.193:143:143"
-    command: tail -F anything
   client:
     image: busybox
     networks:

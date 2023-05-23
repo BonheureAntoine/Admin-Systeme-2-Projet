@@ -21,8 +21,8 @@ readme_directory = no
 compatibility_level = 3.6
 
 # Define server identity
-myhostname = Mail.woodytoys.test
-mydomain = woodytoys.test
+myhostname = mail.m2-2.ephec-ti.be
+mydomain = m2-2.ephec-ti.be
 
 # Outgoing mail must use this as source address domain
 myorigin = $mydomain
@@ -32,7 +32,7 @@ mydestination = $myhostname localhost.$mydomain localhost $mydomain
 smtpd_banner = $myhostname ESMTP $mail_name
 
 # Network from which we accept smtp connexions
-mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128 10.10.0.192/28 0.0.0.0/0 
+mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128 10.0.0.192/28 0.0.0.0/0 
 smtpd_relay_restrictions = permit_mynetworks,reject
 
 #Log configuration

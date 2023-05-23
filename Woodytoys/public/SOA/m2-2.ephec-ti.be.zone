@@ -16,6 +16,7 @@ www.m2-2.ephec-ti.be. A 20.31.160.181;
 b2b.m2-2.ephec-ti.be. A 20.31.160.181;
 
 mail.m2-2.ephec-ti.be. A 20.31.160.181;
+
 m2-2.ephec-ti.be. MX 10 mail.m2-2.ephec-ti.be.;
 
 dkimkey._domainkey.m2-2.ephec-ti.be.      IN     TXT    "v=DKIM1;t=s;p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQD+v15Jb5SH4UHOXtHL5brt0qBKL9WPvsNjxNgPK+0mibN07P0FYeqrAUfJjLM8bgWlBIAdkmBUtMZe4Z73qraxEROiZLYo3PHmMhAoWL1UfrV7YXQ84Isic4PggIL70JhrUSHpORq3IL5ohhlLALFJwNbns5Cjajx7RA450iZn1QIDAQAB";
@@ -23,3 +24,4 @@ dkimkey._domainkey.m2-2.ephec-ti.be.      IN     TXT    "v=DKIM1;t=s;p=MIGfMA0GC
 _domainkey.m2-2.ephec-ti.be.            IN     TXT    "o=~;";
 
 _83C41C9EA56BC983BE51B08F4132A15D.m2-2.ephec-ti.be. 3600 IN CNAME 128441F103B8A3FF86399E4AF026D25A.F23D00869FBAEAE093434D9FC43A32DC.868fd468d7a6cab.comodoca.com.;
+
