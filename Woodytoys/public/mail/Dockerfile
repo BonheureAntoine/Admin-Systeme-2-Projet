@@ -39,7 +39,7 @@ COPY opendkim/SigningTable /etc/opendkim/
 #RUN chmod +x /etc/start.sh
 
 RUN postfix start
-RUN service dovecot start
+#RUN service dovecot start
 
 # CMD ["exec" ,"/etc/start.sh"]
 # CMD exec /etc/start.sh
